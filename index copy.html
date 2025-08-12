@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ashu Kumar — Developer Portfolio</title>
+  <meta name="description" content="Ashu Kumar — Frontend Developer | Python Developer | UI Designer. Building responsive, accessible and modern web UIs." />
+  <meta name="author" content="Ashu Kumar" />
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Optional icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #030316;
+      --panel: rgba(255,255,255,0.03);
+      --muted: #bfc3d6;
+      --text: #EAF0FF;
+      --accent: #a97dd2;
+      --glass-radius: 14px;
+      --card-shadow: 0 6px 24px rgba(0,0,0,0.6);
+      --max-width: 1100px;
+      --trans: 200ms ease;
+    }
+    .theme-light {
+      --bg: #f5f7fb;
+      --panel: rgba(17,17,28,0.03);
+      --muted: #33384a;
+      --text: #0b1020;
+      --accent: #7d4fb2;
+      --card-shadow: 0 8px 30px rgba(16,24,40,0.08);
+    }
+
+    *{box-sizing:border-box}
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg,var(--bg), #060616 120%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      line-height:1.5;
+    }
+
+    /* container */
+    .container{ max-width: var(--max-width); margin:0 auto; padding:28px; }
+
+    /* header / nav */
+    header{
+      position: sticky; top:0; z-index:1200;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{ max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px; }
+    .brand{ display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--text); }
+    .logo{ width:44px; height:44px; border-radius:10px; background: linear-gradient(135deg,#3b2a5a,#a37ad0); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; font-size:18px; box-shadow: var(--card-shadow); }
+    nav ul{ display:flex; gap:18px; list-style:none; margin:0; padding:0; align-items:center; }
+    nav a{ color:var(--muted); text-decoration:none; padding:6px 8px; border-radius:8px; font-weight:600; font-size:0.95rem; transition: color var(--trans), background var(--trans), transform var(--trans); }
+    nav a:hover{ color:var(--accent); transform:translateY(-2px); }
+    nav a.active{ color:var(--accent); background: linear-gradient(90deg, rgba(169,125,210,0.06), transparent); }
+
+    /* controls */
+    .controls{ display:flex; gap:12px; align-items:center; }
+    .btn{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:8px 10px; border-radius:10px; cursor:pointer; display:inline-flex; gap:8px; align-items:center; font-weight:600; transition:all var(--trans); }
+    .btn:hover{ color:var(--accent); border-color: rgba(169,125,210,0.25); }
+
+    /* HERO */
+    .hero{ display:flex; gap:32px; align-items:center; justify-content:space-between; padding:48px 0; max-width:var(--max-width); margin:0 auto; }
+    .hero-left{ flex:1 1 460px; min-width:260px; }
+    .eyebrow{ font-size:0.9rem; color:var(--muted); margin-bottom:12px; }
+    h1{ font-size: clamp(1.6rem, 3.6vw, 2.8rem); margin:4px 0 12px 0; line-height:1.05; }
+    h1 .accent{ color:var(--accent); }
+    p.lead{ color:var(--muted); max-width:56ch; margin-bottom:18px; }
+
+    .cta-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .primary{ background: linear-gradient(90deg,var(--accent), #8b64c0); color:#081018; padding:10px 14px; border-radius:12px; font-weight:700; text-decoration:none; box-shadow: 0 8px 30px rgba(113,81,140,0.12); transition: transform 180ms ease; }
+    .primary:hover{ transform: translateY(-4px); }
+    .secondary{ padding:8px 12px; border-radius:10px; color:var(--muted); border:1px solid rgba(255,255,255,0.04); text-decoration:none; }
+
+    /* hero right (circle image) */
+    .hero-right{ width:320px; min-width:220px; border-radius: 999px; padding:8px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); box-shadow: var(--card-shadow); }
+    /* wrapper keeps a perfect square for the circle regardless of image natural aspect */
+    .profile-wrapper{
+      width: min(44vw, 320px);        /* responsive sizing */
+      height: min(44vw, 320px);
+      max-width: 420px;
+      max-height: 420px;
+      border-radius: 50%;
+      overflow: hidden;
+      display:block;
+      flex: 0 0 auto;
+      background: radial-gradient(circle at 30% 20%, rgba(169,125,210,0.07), transparent 40%);
+    }
+    .profile-wrapper img{
+      width:120%;
+      height:110%;
+      object-fit:cover;      /* important: preserves aspect ratio and center-crops */
+      object-position: center center;
+      display:block;
+      -webkit-user-drag: none;
+    }
+
+    /* SECTIONS */
+    section{ padding:48px 0; max-width:var(--max-width); margin:0 auto; }
+    .section-title{ font-size:1.6rem; margin-bottom:14px; color:var(--text); }
+    .muted{ color:var(--muted); }
+
+    .projects-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:18px; margin-top:18px; }
+    .project{ border-radius:12px; padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow: var(--card-shadow); transition: transform 220ms ease, box-shadow 220ms ease; }
+    .project:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+    .project img{ width:100%; border-radius:8px; display:block; margin-bottom:12px; }
+
+    .skills-grid{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .skill-pill{ padding:10px 14px; border-radius:999px; background: linear-gradient(90deg, rgba(169,125,210,0.12), rgba(169,125,210,0.04)); color:var(--text); font-weight:700; }
+
+    .contact-card{ display:flex; gap:16px; align-items:flex-start; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:12px; box-shadow:var(--card-shadow); }
+
+    footer{ padding:30px 0; color:var(--muted); text-align:center; font-size:0.95rem; border-top:1px solid rgba(255,255,255,0.02); }
+
+    /* REVEAL ANIMATION */
+    .reveal{ opacity:0; transform: translateY(18px) scale(0.995); transition: opacity 560ms cubic-bezier(.2,.9,.2,1), transform 560ms cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
+    .reveal.visible{ opacity:1; transform: translateY(0) scale(1); }
+
+    /* RESPONSIVE */
+    @media (max-width:980px){
+      .hero{ flex-direction:column-reverse; gap:20px; align-items:center; }
+      .hero-right{ width:86%; }
+      nav ul{ display:none; } /* add mobile menu later if wanted */
+    }
+    @media (max-width:600px){
+      .container{ padding:14px; }
+      .nav-inner{ padding:10px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Immediately apply saved theme to avoid flash -->
+  <script>
+    (function(){
+      const saved = localStorage.getItem('theme');
+      if(saved === 'light'){ document.documentElement.classList.add('theme-light'); }
+    })();
+  </script>
+
+  <!-- NAV -->
+  <header aria-hidden="false">
+    <div class="nav-inner">
+      <a href="#home" class="brand" aria-label="Ashu Kumar homepage">
+        <div class="logo" aria-hidden="true">AK</div>
+        <div>
+          <div style="font-weight:700">Ashu Kumar</div>
+          <div style="font-size:0.8rem; color:var(--muted)">Frontend & Python Developer</div>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a class="nav-link" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#skills">Skills</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="controls" role="group" aria-label="Display controls">
+        <button class="btn" id="toggle-theme" aria-pressed="false" title="Toggle light/dark theme">
+          <i class="fa-solid fa-sun" aria-hidden="true"></i>
+          <span style="font-weight:700; margin-left:6px">Light</span>
+        </button>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener" aria-label="Download resume">
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+          <span style="margin-left:6px">Resume</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="home" class="container" role="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left reveal">
+        <div class="eyebrow muted">Hello — I'm</div>
+        <h1>Ashu <span class="accent">Kumar</span></h1>
+        <p class="lead muted">I build intuitive, responsive front-ends and data-minded Python solutions. Clean UI, fast experiences and readable code.</p>
+
+        <div class="cta-row">
+          <a class="primary" href="#projects">See Projects</a>
+          <a class="secondary" href="#contact">Contact Me</a>
+        </div>
+
+        <p style="margin-top:18px" class="muted">Based in India • Open to internships & freelance projects</p>
+      </div>
+
+      <aside class="hero-right reveal" aria-label="Profile">
+        <!-- Replace profile.webp with your 913x831 image filename if different -->
+        <div class="profile-wrapper" role="img" aria-label="Profile image of Ashu Kumar">
+          <img src="bg.webp" alt="Ashu Kumar portrait" loading="lazy" width="913" height="831">
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">About Me</h2>
+      <p class="muted">B.Tech CSE (Data Science) student with hands-on experience in frontend web development and Python. Built responsive projects and enjoy converting ideas to polished user experiences.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-title">Projects</h2>
+      <div class="projects-grid" role="list">
+        <article class="project" role="listitem" aria-labelledby="p1-title">
+          <img src="amazon-clone.webp" alt="Amazon clone screenshot" loading="lazy">
+          <h3 id="p1-title">Amazon Clone (Homepage)</h3>
+          <p class="muted">Responsive e-commerce homepage with product grid. Built in HTML/CSS/JS.</p>
+          <p style="margin-top:8px"><a class="secondary" href="https://Ashu8477.github.io/amazon-clone/" target="_blank" rel="noopener">Live demo</a> • <a class="secondary" href="https://github.com/Ashu8477/amazon-clone" target="_blank" rel="noopener">Code</a></p>
+        </article>
+
+        <article class="project" role="listitem" aria-labelledby="p2-title">
+          <img src="tic-tac-toe.webp" alt="Tic tac toe screenshot" loading="lazy">
+          <h3 id="p2-title">Tic Tac Toe — Browser Game</h3>
+          <p class="muted">Two-player browser game with win/draw logic.</p>
+          <p style="margin-top:8px"><a class="secondary" href="https://github.com/Ashu8477/TicTacToeGame" target="_blank" rel="noopener">Code</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="section-title">Skills</h2>
+      <div class="skills-grid" role="list">
+        <span class="skill-pill" role="listitem">HTML</span>
+        <span class="skill-pill" role="listitem">CSS</span>
+        <span class="skill-pill" role="listitem">JavaScript</span>
+        <span class="skill-pill" role="listitem">Python</span>
+        <span class="skill-pill" role="listitem">React</span>
+        <span class="skill-pill" role="listitem">MongoDB</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title">Contact</h2>
+      <div class="contact-card">
+        <div style="flex:1">
+          <p class="muted"><strong>Email</strong></p>
+          <p><a href="mailto:singhaashu271@gmail.com" style="color:var(--text); text-decoration:none">singhaashu271@gmail.com</a></p>
+
+          <p class="muted" style="margin-top:12px"><strong>Phone</strong></p>
+          <p><a href="tel:+918477931781" style="color:var(--text); text-decoration:none">+91-8477931781</a></p>
+        </div>
+
+        <div style="min-width:180px; text-align:right">
+          <p class="muted"><strong>Social</strong></p>
+          <p style="margin-top:8px">
+            <a class="secondary" href="https://github.com/Ashu8477" target="_blank" rel="noopener">GitHub</a><br>
+            <a class="secondary" href="https://www.linkedin.com/in/ashu-kumar-77877b289/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container"><small>© 2025 — Ashu Kumar • Dark mode default</small></div>
+  </footer>
+
+  <script>
+    // theme toggle + persistence
+    const themeToggle = document.getElementById('toggle-theme');
+    const htmlEl = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light') htmlEl.classList.add('theme-light');
+
+    function setTheme(mode){
+      if(mode === 'light'){ htmlEl.classList.add('theme-light'); localStorage.setItem('theme','light'); }
+      else { htmlEl.classList.remove('theme-light'); localStorage.setItem('theme','dark'); }
+      // update button text if present
+      if(themeToggle){
+        const isLight = htmlEl.classList.contains('theme-light');
+        themeToggle.setAttribute('aria-pressed', String(isLight));
+        themeToggle.innerHTML = isLight ? '<i class=\"fa-solid fa-moon\"></i> Dark' : '<i class=\"fa-solid fa-sun\"></i> Light';
+      }
+    }
+
+    if(themeToggle){
+      // init label
+      setTheme(htmlEl.classList.contains('theme-light') ? 'light' : 'dark');
+      themeToggle.addEventListener('click', () => {
+        const nowLight = htmlEl.classList.contains('theme-light');
+        setTheme(nowLight ? 'dark' : 'light');
+      });
+    }
+
+    // Scroll reveal using IntersectionObserver
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Active nav highlight (observe sections)
+    const sections = document.querySelectorAll('main section[id]');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const link = document.querySelector('.nav-link[href="#' + id + '"]');
+        if(entry.isIntersecting){
+          document.querySelectorAll('.nav-link').forEach(a=>a.classList.remove('active'));
+          if(link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // keyboard support for toggle
+    if(themeToggle){
+      themeToggle.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); themeToggle.click(); }
+      });
+    }
+
+    // small: avoid focus outline on mouse click but keep for keyboard
+    document.body.addEventListener('mousedown', ()=> document.documentElement.style.setProperty('--focus-style','none'));
+    document.body.addEventListener('keydown', ()=> document.documentElement.style.removeProperty('--focus-style'));
+  </script>
+</body>
+</html>
