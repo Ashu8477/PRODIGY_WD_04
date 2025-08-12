@@ -34,7 +34,7 @@ During this project, I gained practical experience in responsive web design, lay
 ---
 
 ### LinkedIn Post Link  
-[]
+[https://www.linkedin.com/posts/ashu-kumar-77877b289_prodigyinfotech-webdevelopment-internship-activity-7360989289079361537-NpPH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEYPKYwBb9P4Dgvo-YgnA_7-pShalQwh9TU]
 
 ---
 
